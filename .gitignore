@@ -1,0 +1,9 @@
+# Secrets — never commit these
+*.pem
+*.key
+idc-metadata.xml
+.env
+node_modules/
+
+# OS
+.DS_Store
