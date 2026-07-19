@@ -24,7 +24,15 @@ device-code auth. Integration for a custom portal is via **SAML 2.0**
   - ACS URL: placeholder `https://auth.example.com/saml/acs`
     (to be replaced with real API Gateway URL in Step 4).
   - Entity ID / SAML audience: `urn:secure-report-portal:poc`
-- Downloaded IdC IdP metadata XML (kept out of git — see .gitignore).
+- - Downloaded IdC IdP metadata XML and signing certificate (kept out of git —
+  see .gitignore). Local filenames: `idc-metadata.xml`, `idc-signing-cert.pem`.
+- IdC SAML issuer URL (Entity ID of the IdP, used to validate the `Issuer`
+  field of incoming SAML assertions in Step 4):https://portal.sso.us-east-1.amazonaws.com/saml/assertion/NzI2ODcxMzg1NjY2X2lucy03MjIzYzA0ZDg5Y2QwNWFi
+  - IdC sign-in URL (where unauthenticated users get redirected to start SSO):https://portal.sso.us-east-1.amazonaws.com/saml/assertion/NzI2ODcxMzg1NjY2X2lucy03MjIzYzA0ZDg5Y2QwNWFi
+  - Application submitted with:
+  - ACS URL (placeholder): `https://auth.example.com/saml/acs`
+  - SAML audience (Entity ID): `urn:secure-report-portal:poc`
+  - Session duration: 1 hour
 - Assigned both groups to the application.
 - Added attribute mapping for `https://aws.amazon.com/SAML/Attributes/Groups`
   → `${user:groups}` so group membership is present in the SAML assertion,
